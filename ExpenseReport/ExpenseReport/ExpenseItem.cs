@@ -20,10 +20,6 @@ namespace ExpenseReport
             Cost = decimal.Parse(cost, NumberStyles.AllowCurrencySymbol | NumberStyles.Number);
            // Cost = Convert.ToDouble(cost);
         }
-
-        public string[] ToArray()
-        {
-            return new string[3]{ Date.ToShortDateString(), Name, Cost.ToString() };
-        }
+        
     }
 }

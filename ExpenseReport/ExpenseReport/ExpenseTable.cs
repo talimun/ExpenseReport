@@ -12,6 +12,9 @@ namespace ExpenseReport
 {
     class ExpenseTable
     {
+        const string DATE = "date";
+        const string DESC = "description"; 
+        const string COST = "cost";
         public DataTable Table {  get; }
 
         private Form1 myParent;
@@ -25,41 +28,80 @@ namespace ExpenseReport
 
         public bool LoadFromFile(string filename)
         {
-            Table.Clear(); 
-            FileStream stream = new FileStream(filename, FileMode.Open);
-            TextFieldParser reader = new TextFieldParser(stream);
-            reader.TextFieldType = FieldType.Delimited;
-            reader.SetDelimiters(",");
-
-            string[] data = reader.ReadFields();
-
-            Table.Columns.Add(data[0], Type. 
-            foreach (string columnName in data)
-            {
-                if (columnName.Length > 0)
-                {
-                }
-            }
-
-
-            while (!reader.EndOfData)
+            try
             {
 
-                string[] AllRows = reader.ReadFields();
-                try
-                {
-                    ExpenseItem expenseItem = new ExpenseItem(AllRows[0], AllRows[1], AllRows[2]);
 
-                    Table.Rows.Add(expenseItem.ToArray());
-                }
-                catch (Exception ex)
+                Table.Clear();
+                FileStream stream = new FileStream(filename, FileMode.Open);
+                TextFieldParser reader = new TextFieldParser(stream);
+                reader.TextFieldType = FieldType.Delimited;
+                reader.SetDelimiters(",");
+
+                string[] data = reader.ReadFields();
+                if(!data[0].Equals(DATE))
                 {
-                    myParent.Log(ex.Message);
+                    throw new Exception("Error parsing Date column");
                 }
+                DataColumn column = new DataColumn();
+                column.DataType = System.Type.GetType("System.DateTime");
+                column.ColumnName = DATE;
+                column.ReadOnly = true;
+                column.Unique = false;
+                Table.Columns.Add(column);
+
+                if (!data[1].Equals(DESC))
+                {
+                    throw new Exception("Error parsing Description column");
+                }
+                column = new DataColumn();
+                column.DataType = System.Type.GetType("System.String");
+                column.ColumnName = DESC;
+                column.ReadOnly = true;
+                column.Unique = false;
+                Table.Columns.Add(column);
+
+
+                if (!data[2].Equals(COST))
+                {
+                    throw new Exception("Error parsing Date column");
+                }
+                column = new DataColumn();
+                column.DataType = System.Type.GetType("System.Decimal");
+                column.ColumnName = COST;
+                column.ReadOnly = true;
+                column.Unique = false;
+                Table.Columns.Add(column);
+
+                while (!reader.EndOfData)
+                {
+
+                    string[] AllRows = reader.ReadFields();
+                    try
+                    {
+                        ExpenseItem expenseItem = new ExpenseItem(AllRows[0], AllRows[1], AllRows[2]);
+
+                        DataRow row = Table.NewRow();
+                        row[DATE] = expenseItem.Date;
+                        row[DESC] = expenseItem.Name;
+                        row[COST] = expenseItem.Cost;
+
+                        Table.Rows.Add(row);
+                    }
+                    catch (Exception ex)
+                    {
+                        myParent.Log(ex.Message);
+                    }
+                }
+
+
+                return true;
             }
-
-
-            return true;
+            catch(Exception ex)
+            {
+                myParent.Log(ex.Message);
+            }
+            return false;
         }
     }
 }
