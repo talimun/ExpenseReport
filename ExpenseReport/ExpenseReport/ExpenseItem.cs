@@ -18,7 +18,6 @@ namespace ExpenseReport
             Date = Convert.ToDateTime(date);
             Name = name;
             Cost = decimal.Parse(cost, NumberStyles.AllowCurrencySymbol | NumberStyles.Number);
-           // Cost = Convert.ToDouble(cost);
         }
         
     }

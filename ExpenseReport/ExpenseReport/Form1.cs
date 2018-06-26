@@ -13,20 +13,24 @@ namespace ExpenseReport
 {
     public partial class Form1 : Form
     {
-        ExpenseTable myTable;
+        ExpenseTable myRawData;
+        ExpenseCategories myCategories;
         
         public Form1()
         {
             InitializeComponent();
+            myCategories = new ExpenseCategories(this);
+            myCategories.LoadFromFile();
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            myTable = new ExpenseTable(this);
+            myRawData = new ExpenseTable(this);
             if (openFileDialog1.ShowDialog()== DialogResult.OK)
             {
-                myTable.LoadFromFile(openFileDialog1.FileName);
-                dataGridView1.DataSource = myTable.Table;
+                myRawData.LoadFromFile(openFileDialog1.FileName);
+                dataGridView1.DataSource = myRawData.Table;
+                UpdateSummary();
             }
 
         }
@@ -34,6 +38,15 @@ namespace ExpenseReport
         public void Log(string logline)
         {
             logFile.AppendText(logline);
+        }
+
+        public void UpdateSummary()
+        {
+            int totalRows = myRawData.TotalRows();
+            int catagories = myRawData.TotalCategories();
+            int underfinedRows = myRawData.UndefinedRows();
+            UncatagorisedNumberLabel.Text = totalRows+ " Rows loaded";
+
         }
     }
 }
