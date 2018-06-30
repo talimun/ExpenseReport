@@ -13,8 +13,10 @@ namespace ExpenseReport
 {
     public partial class Form1 : Form
     {
-        ExpenseTable myRawData;
+        ExpenseTable myRawData = new ExpenseTable();
         ExpenseCategories myCategories;
+        private int myIndex = 0;
+        private int myTotalRows = 0;
         
         public Form1()
         {
@@ -29,8 +31,10 @@ namespace ExpenseReport
             if (openFileDialog1.ShowDialog()== DialogResult.OK)
             {
                 myRawData.LoadFromFile(openFileDialog1.FileName);
+                myTotalRows = myRawData.TotalUniqueExpenses();
                 dataGridView1.DataSource = myRawData.Table;
                 UpdateSummary();
+                ShowNextExpense();
             }
 
         }
@@ -40,6 +44,26 @@ namespace ExpenseReport
             logFile.AppendText(logline);
         }
 
+        public void ShowNextExpense()
+        {
+            if (myRawData.TotalRows() > 0)
+            {
+                expenseNameTextBox.Text = myRawData.GetExpenseItemName(myIndex);
+
+                myIndex = (++myIndex) % myTotalRows;
+            }
+        }
+
+        public void ShowPreviousExpense()
+        {
+            if (myRawData.TotalRows() > 0)
+            {
+                myIndex = mats.abs((--myIndex) % myTotalRows);
+                expenseNameTextBox.Text = myRawData.GetExpenseItemName(myIndex);
+
+            }
+        }
+
         public void UpdateSummary()
         {
             int totalRows = myRawData.TotalRows();
@@ -47,6 +71,16 @@ namespace ExpenseReport
             int underfinedRows = myRawData.UndefinedRows();
             UncatagorisedNumberLabel.Text = totalRows+ " Rows loaded";
 
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            ShowNextExpense();
+        }
+
+        private void skipButton_Click(object sender, EventArgs e)
+        {
+            ShowPreviousExpense();
         }
     }
 }

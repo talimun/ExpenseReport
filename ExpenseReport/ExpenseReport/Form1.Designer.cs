@@ -35,6 +35,14 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.skipButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.expenseNameTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.SetCategoryDataGridView = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.UncatagorisedNumberLabel = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -42,30 +50,19 @@
             this.logFile = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.SetCategoryDataGridView = new System.Windows.Forms.DataGridView();
-            this.createCategoryButton = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.expenseNameTextBox = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.saveButton = new System.Windows.Forms.Button();
-            this.skipButton = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SetCategoryDataGridView)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SetCategoryDataGridView)).BeginInit();
             this.SuspendLayout();
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // menuStrip1
             // 
@@ -124,6 +121,89 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Expenses";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.listBox1);
+            this.groupBox2.Controls.Add(this.skipButton);
+            this.groupBox2.Controls.Add(this.saveButton);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.expenseNameTextBox);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.comboBox1);
+            this.groupBox2.Controls.Add(this.SetCategoryDataGridView);
+            this.groupBox2.Location = new System.Drawing.Point(26, 43);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(990, 455);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Set Categories";
+            // 
+            // skipButton
+            // 
+            this.skipButton.Location = new System.Drawing.Point(29, 413);
+            this.skipButton.Name = "skipButton";
+            this.skipButton.Size = new System.Drawing.Size(118, 35);
+            this.skipButton.TabIndex = 7;
+            this.skipButton.Text = "Previous";
+            this.skipButton.UseVisualStyleBackColor = true;
+            this.skipButton.Click += new System.EventHandler(this.skipButton_Click);
+            // 
+            // saveButton
+            // 
+            this.saveButton.Location = new System.Drawing.Point(437, 413);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(144, 36);
+            this.saveButton.TabIndex = 6;
+            this.saveButton.Text = "Next";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(25, 123);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(122, 20);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Select Category";
+            // 
+            // expenseNameTextBox
+            // 
+            this.expenseNameTextBox.Location = new System.Drawing.Point(187, 66);
+            this.expenseNameTextBox.Name = "expenseNameTextBox";
+            this.expenseNameTextBox.ReadOnly = true;
+            this.expenseNameTextBox.Size = new System.Drawing.Size(394, 26);
+            this.expenseNameTextBox.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(25, 73);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(117, 20);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Expense Name";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Create New..."});
+            this.comboBox1.Location = new System.Drawing.Point(29, 160);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(225, 28);
+            this.comboBox1.TabIndex = 2;
+            // 
+            // SetCategoryDataGridView
+            // 
+            this.SetCategoryDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.SetCategoryDataGridView.Location = new System.Drawing.Point(606, 35);
+            this.SetCategoryDataGridView.Name = "SetCategoryDataGridView";
+            this.SetCategoryDataGridView.RowTemplate.Height = 28;
+            this.SetCategoryDataGridView.Size = new System.Drawing.Size(378, 414);
+            this.SetCategoryDataGridView.TabIndex = 0;
             // 
             // groupBox1
             // 
@@ -188,92 +268,23 @@
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
             this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 22);
             // 
-            // groupBox2
+            // listBox1
             // 
-            this.groupBox2.Controls.Add(this.skipButton);
-            this.groupBox2.Controls.Add(this.saveButton);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.expenseNameTextBox);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.comboBox1);
-            this.groupBox2.Controls.Add(this.createCategoryButton);
-            this.groupBox2.Controls.Add(this.SetCategoryDataGridView);
-            this.groupBox2.Location = new System.Drawing.Point(26, 43);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(990, 455);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Set Categories";
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 20;
+            this.listBox1.Location = new System.Drawing.Point(437, 132);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(144, 144);
+            this.listBox1.TabIndex = 8;
             // 
-            // SetCategoryDataGridView
+            // button1
             // 
-            this.SetCategoryDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.SetCategoryDataGridView.Location = new System.Drawing.Point(606, 35);
-            this.SetCategoryDataGridView.Name = "SetCategoryDataGridView";
-            this.SetCategoryDataGridView.RowTemplate.Height = 28;
-            this.SetCategoryDataGridView.Size = new System.Drawing.Size(378, 414);
-            this.SetCategoryDataGridView.TabIndex = 0;
-            // 
-            // createCategoryButton
-            // 
-            this.createCategoryButton.Location = new System.Drawing.Point(356, 223);
-            this.createCategoryButton.Name = "createCategoryButton";
-            this.createCategoryButton.Size = new System.Drawing.Size(225, 33);
-            this.createCategoryButton.TabIndex = 1;
-            this.createCategoryButton.Text = "Create New Category";
-            this.createCategoryButton.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(275, 169);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(306, 28);
-            this.comboBox1.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 73);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(117, 20);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Expense Name";
-            // 
-            // expenseNameTextBox
-            // 
-            this.expenseNameTextBox.Location = new System.Drawing.Point(187, 66);
-            this.expenseNameTextBox.Name = "expenseNameTextBox";
-            this.expenseNameTextBox.ReadOnly = true;
-            this.expenseNameTextBox.Size = new System.Drawing.Size(394, 26);
-            this.expenseNameTextBox.TabIndex = 4;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 172);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(122, 20);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Select Category";
-            // 
-            // saveButton
-            // 
-            this.saveButton.Location = new System.Drawing.Point(339, 413);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(242, 36);
-            this.saveButton.TabIndex = 6;
-            this.saveButton.Text = "Save";
-            this.saveButton.UseVisualStyleBackColor = true;
-            // 
-            // skipButton
-            // 
-            this.skipButton.Location = new System.Drawing.Point(29, 413);
-            this.skipButton.Name = "skipButton";
-            this.skipButton.Size = new System.Drawing.Size(245, 35);
-            this.skipButton.TabIndex = 7;
-            this.skipButton.Text = "Skip";
-            this.skipButton.UseVisualStyleBackColor = true;
+            this.button1.Location = new System.Drawing.Point(437, 293);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(144, 58);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "delete selected";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -291,6 +302,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SetCategoryDataGridView)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPage1.ResumeLayout(false);
@@ -298,9 +312,6 @@
             this.tabPage3.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SetCategoryDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -329,8 +340,9 @@
         private System.Windows.Forms.TextBox expenseNameTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button createCategoryButton;
         private System.Windows.Forms.DataGridView SetCategoryDataGridView;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

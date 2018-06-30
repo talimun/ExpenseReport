@@ -17,9 +17,14 @@ namespace ExpenseReport
         const string COST = "cost";
         public DataTable Table {  get; }
         private Dictionary<string, List<ExpenseItem> > myExpenseItemsByName;
-
         private Form1 myParent;
-        
+
+        public ExpenseTable()
+        {
+            Table = new DataTable();
+            myExpenseItemsByName = new Dictionary<string, List<ExpenseItem>>();
+
+        }
         public ExpenseTable(Form1 parent)
         {
             myParent = parent;
@@ -28,6 +33,16 @@ namespace ExpenseReport
 
         }
 
+        public string GetExpenseItemName(int index)
+        {
+            return myExpenseItemsByName.ElementAt(index).Key;
+
+        }
+
+        public int TotalUniqueExpenses()
+        {
+            return myExpenseItemsByName.Count();
+        }
         public int TotalRows()
         {
             return Table.Rows.Count;
