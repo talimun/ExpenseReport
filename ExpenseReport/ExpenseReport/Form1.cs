@@ -48,9 +48,8 @@ namespace ExpenseReport
         {
             if (myRawData.TotalRows() > 0)
             {
-                expenseNameTextBox.Text = myRawData.GetExpenseItemName(myIndex);
-
                 myIndex = (++myIndex) % myTotalRows;
+                PopulateExpenseDetails(myIndex);
             }
         }
 
@@ -58,12 +57,15 @@ namespace ExpenseReport
         {
             if (myRawData.TotalRows() > 0)
             {
-                myIndex = mats.abs((--myIndex) % myTotalRows);
-                expenseNameTextBox.Text = myRawData.GetExpenseItemName(myIndex);
-
+                myIndex = --myIndex < 0?  myTotalRows-1: myIndex;
+                PopulateExpenseDetails(myIndex);
             }
         }
 
+        private void PopulateExpenseDetails(int index)
+        {
+            expenseNameTextBox.Text = myRawData.GetExpenseItemName(myIndex);
+        }
         public void UpdateSummary()
         {
             int totalRows = myRawData.TotalRows();
