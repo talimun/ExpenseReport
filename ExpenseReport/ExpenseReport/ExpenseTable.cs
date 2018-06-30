@@ -39,6 +39,11 @@ namespace ExpenseReport
 
         }
 
+        public List<ExpenseItem> GetExpenseItems(string name)
+        {
+            return myExpenseItemsByName[name];
+        }
+
         public int TotalUniqueExpenses()
         {
             return myExpenseItemsByName.Count();

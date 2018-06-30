@@ -17,12 +17,33 @@ namespace ExpenseReport
         ExpenseCategories myCategories;
         private int myIndex = 0;
         private int myTotalRows = 0;
-        
+        private DataTable myTable = new DataTable();
+        private Form CategoryWindow = new NewCategory();
+
+        const string DATE = "date";
+        const string DESC = "description";
+        const string COST = "cost";
+
         public Form1()
         {
             InitializeComponent();
             myCategories = new ExpenseCategories(this);
             myCategories.LoadFromFile();
+
+
+            DataColumn column = new DataColumn();
+            column.DataType = System.Type.GetType("System.DateTime");
+            column.ColumnName = DATE;
+            column.ReadOnly = true;
+            column.Unique = false;
+            myTable.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = System.Type.GetType("System.Decimal");
+            column.ColumnName = COST;
+            column.ReadOnly = true;
+            column.Unique = false;
+            myTable.Columns.Add(column);
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -64,14 +85,30 @@ namespace ExpenseReport
 
         private void PopulateExpenseDetails(int index)
         {
-            expenseNameTextBox.Text = myRawData.GetExpenseItemName(myIndex);
+            string expenseItemName = myRawData.GetExpenseItemName(myIndex);
+            List<ExpenseItem> expenseItems = myRawData.GetExpenseItems(expenseItemName);
+
+            expenseNameTextBox.Text = expenseItemName;
+
+            myTable.Clear();
+
+            foreach (ExpenseItem expenseItem in expenseItems)
+            {
+                DataRow row = myTable.NewRow();
+                row[DATE] = expenseItem.Date;
+                row[COST] = expenseItem.Cost;
+
+                myTable.Rows.Add(row);
+            }
+
+            setCategoryDataGridView.DataSource = myTable;
+
         }
         public void UpdateSummary()
         {
-            int totalRows = myRawData.TotalRows();
             int catagories = myRawData.TotalCategories();
             int underfinedRows = myRawData.UndefinedRows();
-            UncatagorisedNumberLabel.Text = totalRows+ " Rows loaded";
+            UncatagorisedNumberLabel.Text = myTotalRows + " Rows loaded";
 
         }
 
@@ -83,6 +120,14 @@ namespace ExpenseReport
         private void skipButton_Click(object sender, EventArgs e)
         {
             ShowPreviousExpense();
+        }
+
+        private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedItem == "Create New...")
+            {
+                CategoryWindow.ShowDialog();
+            }
         }
     }
 }

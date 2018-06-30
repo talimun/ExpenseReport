@@ -36,13 +36,15 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.skipButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.expenseNameTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.SetCategoryDataGridView = new System.Windows.Forms.DataGridView();
+            this.setCategoryDataGridView = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.UncatagorisedNumberLabel = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -50,14 +52,12 @@
             this.logFile = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SetCategoryDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.setCategoryDataGridView)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -92,6 +92,9 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(6, 6);
             this.dataGridView1.Name = "dataGridView1";
@@ -101,13 +104,16 @@
             // 
             // tabControl1
             // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(12, 36);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1043, 746);
+            this.tabControl1.Size = new System.Drawing.Size(1043, 783);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage2
@@ -117,13 +123,16 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1035, 713);
+            this.tabPage2.Size = new System.Drawing.Size(1035, 750);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Expenses";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.listBox1);
             this.groupBox2.Controls.Add(this.skipButton);
@@ -132,17 +141,40 @@
             this.groupBox2.Controls.Add(this.expenseNameTextBox);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.comboBox1);
-            this.groupBox2.Controls.Add(this.SetCategoryDataGridView);
+            this.groupBox2.Controls.Add(this.setCategoryDataGridView);
             this.groupBox2.Location = new System.Drawing.Point(26, 43);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(990, 455);
+            this.groupBox2.Size = new System.Drawing.Size(990, 492);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Set Categories";
             // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(437, 293);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(144, 58);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "delete selected";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // listBox1
+            // 
+            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 20;
+            this.listBox1.Location = new System.Drawing.Point(437, 132);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(144, 144);
+            this.listBox1.TabIndex = 8;
+            // 
             // skipButton
             // 
-            this.skipButton.Location = new System.Drawing.Point(29, 413);
+            this.skipButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.skipButton.Location = new System.Drawing.Point(10, 437);
             this.skipButton.Name = "skipButton";
             this.skipButton.Size = new System.Drawing.Size(118, 35);
             this.skipButton.TabIndex = 7;
@@ -152,7 +184,9 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(437, 413);
+            this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveButton.Location = new System.Drawing.Point(437, 437);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(144, 36);
             this.saveButton.TabIndex = 6;
@@ -171,16 +205,18 @@
             // 
             // expenseNameTextBox
             // 
-            this.expenseNameTextBox.Location = new System.Drawing.Point(187, 66);
+            this.expenseNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.expenseNameTextBox.Location = new System.Drawing.Point(10, 66);
             this.expenseNameTextBox.Name = "expenseNameTextBox";
             this.expenseNameTextBox.ReadOnly = true;
-            this.expenseNameTextBox.Size = new System.Drawing.Size(394, 26);
+            this.expenseNameTextBox.Size = new System.Drawing.Size(571, 26);
             this.expenseNameTextBox.TabIndex = 4;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 73);
+            this.label1.Location = new System.Drawing.Point(6, 35);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(117, 20);
             this.label1.TabIndex = 3;
@@ -195,20 +231,27 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(225, 28);
             this.comboBox1.TabIndex = 2;
+            this.comboBox1.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
             // 
-            // SetCategoryDataGridView
+            // setCategoryDataGridView
             // 
-            this.SetCategoryDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.SetCategoryDataGridView.Location = new System.Drawing.Point(606, 35);
-            this.SetCategoryDataGridView.Name = "SetCategoryDataGridView";
-            this.SetCategoryDataGridView.RowTemplate.Height = 28;
-            this.SetCategoryDataGridView.Size = new System.Drawing.Size(378, 414);
-            this.SetCategoryDataGridView.TabIndex = 0;
+            this.setCategoryDataGridView.AllowUserToAddRows = false;
+            this.setCategoryDataGridView.AllowUserToDeleteRows = false;
+            this.setCategoryDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.setCategoryDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.setCategoryDataGridView.Location = new System.Drawing.Point(606, 35);
+            this.setCategoryDataGridView.Name = "setCategoryDataGridView";
+            this.setCategoryDataGridView.RowTemplate.Height = 28;
+            this.setCategoryDataGridView.Size = new System.Drawing.Size(378, 451);
+            this.setCategoryDataGridView.TabIndex = 0;
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.UncatagorisedNumberLabel);
-            this.groupBox1.Location = new System.Drawing.Point(22, 513);
+            this.groupBox1.Location = new System.Drawing.Point(22, 550);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(995, 189);
             this.groupBox1.TabIndex = 0;
@@ -239,17 +282,20 @@
             this.tabPage3.Controls.Add(this.logFile);
             this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1035, 713);
+            this.tabPage3.Size = new System.Drawing.Size(1035, 750);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "status log";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // logFile
             // 
+            this.logFile.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.logFile.Location = new System.Drawing.Point(6, 23);
             this.logFile.Multiline = true;
             this.logFile.Name = "logFile";
-            this.logFile.Size = new System.Drawing.Size(1023, 669);
+            this.logFile.Size = new System.Drawing.Size(1023, 706);
             this.logFile.TabIndex = 1;
             // 
             // statusStrip1
@@ -257,7 +303,7 @@
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripProgressBar1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 779);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 816);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1067, 28);
             this.statusStrip1.TabIndex = 3;
@@ -268,33 +314,16 @@
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
             this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 22);
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(437, 132);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(144, 144);
-            this.listBox1.TabIndex = 8;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(437, 293);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(144, 58);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "delete selected";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 807);
+            this.ClientSize = new System.Drawing.Size(1067, 844);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(1000, 900);
             this.Name = "Form1";
             this.Text = "Form1";
             this.menuStrip1.ResumeLayout(false);
@@ -304,7 +333,7 @@
             this.tabPage2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SetCategoryDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.setCategoryDataGridView)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPage1.ResumeLayout(false);
@@ -340,7 +369,7 @@
         private System.Windows.Forms.TextBox expenseNameTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.DataGridView SetCategoryDataGridView;
+        private System.Windows.Forms.DataGridView setCategoryDataGridView;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button button1;
     }
