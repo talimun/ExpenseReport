@@ -18,7 +18,7 @@ namespace ExpenseReport
         private int myIndex = 0;
         private int myTotalRows = 0;
         private DataTable myTable = new DataTable();
-        private Form CategoryWindow = new NewCategory();
+        private NewCategory CategoryWindow;
 
         const string DATE = "date";
         const string DESC = "description";
@@ -124,9 +124,16 @@ namespace ExpenseReport
 
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedItem == "Create New...")
+            if (categoryComboBox.SelectedItem.ToString() == "Create New...")
             {
-                CategoryWindow.ShowDialog();
+                CategoryWindow = new NewCategory();
+                DialogResult results = CategoryWindow.ShowDialog();
+                if (results == DialogResult.OK)
+                {
+                    myCategories.CategoryList.Add(CategoryWindow.Category);
+                    categoryComboBox.Items.Add(CategoryWindow.Category);
+                }
+                CategoryWindow.Dispose();
             }
         }
     }

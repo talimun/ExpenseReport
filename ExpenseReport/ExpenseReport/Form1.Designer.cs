@@ -43,7 +43,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.expenseNameTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.categoryComboBox = new System.Windows.Forms.ComboBox();
             this.setCategoryDataGridView = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.UncatagorisedNumberLabel = new System.Windows.Forms.Label();
@@ -140,7 +140,7 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.expenseNameTextBox);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.comboBox1);
+            this.groupBox2.Controls.Add(this.categoryComboBox);
             this.groupBox2.Controls.Add(this.setCategoryDataGridView);
             this.groupBox2.Location = new System.Drawing.Point(26, 43);
             this.groupBox2.Name = "groupBox2";
@@ -222,16 +222,16 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Expense Name";
             // 
-            // comboBox1
+            // categoryComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.categoryComboBox.FormattingEnabled = true;
+            this.categoryComboBox.Items.AddRange(new object[] {
             "Create New..."});
-            this.comboBox1.Location = new System.Drawing.Point(29, 160);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(225, 28);
-            this.comboBox1.TabIndex = 2;
-            this.comboBox1.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
+            this.categoryComboBox.Location = new System.Drawing.Point(29, 160);
+            this.categoryComboBox.Name = "categoryComboBox";
+            this.categoryComboBox.Size = new System.Drawing.Size(225, 28);
+            this.categoryComboBox.TabIndex = 2;
+            this.categoryComboBox.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
             // 
             // setCategoryDataGridView
             // 
@@ -368,7 +368,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox expenseNameTextBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox categoryComboBox;
         private System.Windows.Forms.DataGridView setCategoryDataGridView;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button button1;

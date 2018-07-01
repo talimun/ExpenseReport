@@ -13,9 +13,10 @@ namespace ExpenseReport
         private static string FILENAME = "categories.csv";
         private Form1 myParent;
 
-        public List<string> CategoryList { get; set; }
+        public List<string> CategoryList;
         public ExpenseCategories(Form1 parent)
         {
+            CategoryList = new List<string>();
             myParent = parent;
         }
 
