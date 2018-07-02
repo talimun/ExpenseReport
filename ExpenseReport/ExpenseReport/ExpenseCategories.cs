@@ -31,7 +31,13 @@ namespace ExpenseReport
                 reader.SetDelimiters(",");
 
                 string[] data = reader.ReadFields();
-                CategoryList.AddRange(data);
+                foreach (string category in data)
+                {
+                    if (category.Length >0 && ! CategoryList.Contains(category))
+                    {
+                        CategoryList.Add(category);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -39,6 +45,26 @@ namespace ExpenseReport
             }
 
             
+        }
+
+        public void SaveToFile()
+        {
+
+            try
+            {
+                using (System.IO.StreamWriter file = new StreamWriter(FILENAME))
+                {
+                    foreach (string category in CategoryList)
+                    {
+                        file.Write(category);
+                        file.Write(",");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                myParent.Log(ex.Message);
+            }
         }
     }
 }

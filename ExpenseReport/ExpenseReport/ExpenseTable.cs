@@ -16,20 +16,20 @@ namespace ExpenseReport
         const string DESC = "description"; 
         const string COST = "cost";
         public DataTable Table {  get; }
-        private Dictionary<string, List<ExpenseItem> > myExpenseItemsByName;
+        private Dictionary<string, ExpenseCollection > myExpenseItemsByName;
         private Form1 myParent;
 
         public ExpenseTable()
         {
             Table = new DataTable();
-            myExpenseItemsByName = new Dictionary<string, List<ExpenseItem>>();
+            myExpenseItemsByName = new Dictionary<string, ExpenseCollection>();
 
         }
         public ExpenseTable(Form1 parent)
         {
             myParent = parent;
             Table = new DataTable();
-            myExpenseItemsByName = new Dictionary<string, List<ExpenseItem> >();
+            myExpenseItemsByName = new Dictionary<string, ExpenseCollection>();
 
         }
 
@@ -39,7 +39,7 @@ namespace ExpenseReport
 
         }
 
-        public List<ExpenseItem> GetExpenseItems(string name)
+        public ExpenseCollection GetExpenseItems(string name)
         {
             return myExpenseItemsByName[name];
         }
@@ -97,11 +97,11 @@ namespace ExpenseReport
                         ExpenseItem expenseItem = new ExpenseItem(AllRows[0], AllRows[1], AllRows[2]);
                         if (myExpenseItemsByName.ContainsKey(expenseItem.Name))
                         {
-                            myExpenseItemsByName[expenseItem.Name].Add(expenseItem);
+                            myExpenseItemsByName[expenseItem.Name].AddExpense(expenseItem);
                         }
                         else
                         {
-                            myExpenseItemsByName.Add(expenseItem.Name, new List<ExpenseItem>() { expenseItem });
+                            myExpenseItemsByName.Add(expenseItem.Name, new ExpenseCollection( expenseItem ));
                         }
                     }
                     catch (Exception ex)
@@ -147,8 +147,8 @@ namespace ExpenseReport
 
             foreach (string name in myExpenseItemsByName.Keys)
             {
-                List<ExpenseItem> expenseItems = myExpenseItemsByName[name];
-                foreach (ExpenseItem expenseItem in expenseItems)
+                ExpenseCollection expenseCollection = myExpenseItemsByName[name];
+                foreach (ExpenseItem expenseItem in expenseCollection.ExpenseItems)
                 {
                     DataRow row = Table.NewRow();
                     row[DATE] = expenseItem.Date;
@@ -159,6 +159,11 @@ namespace ExpenseReport
                 }
             }
             
+        }
+
+        public void AddCategoryToExpense(int index, string category)
+        {
+            myExpenseItemsByName.ElementAt(index).Value.AddCategory(category);
         }
     }
 }

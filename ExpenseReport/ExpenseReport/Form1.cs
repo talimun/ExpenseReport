@@ -29,7 +29,7 @@ namespace ExpenseReport
             InitializeComponent();
             myCategories = new ExpenseCategories(this);
             myCategories.LoadFromFile();
-
+            UpdateComboBox();
 
             DataColumn column = new DataColumn();
             column.DataType = System.Type.GetType("System.DateTime");
@@ -59,7 +59,19 @@ namespace ExpenseReport
             }
 
         }
+        private void UpdateComboBox()
+        {
+            foreach (string category in myCategories.CategoryList)
+            {
+                categoryComboBox.Items.Add(category);
+            }
+        }
 
+        private bool DataLoaded()
+        {
+            return (myRawData.TotalRows() > 0);
+        }
+        
         public void Log(string logline)
         {
             logFile.AppendText(logline);
@@ -67,7 +79,7 @@ namespace ExpenseReport
 
         public void ShowNextExpense()
         {
-            if (myRawData.TotalRows() > 0)
+            if (DataLoaded())
             {
                 myIndex = (++myIndex) % myTotalRows;
                 PopulateExpenseDetails(myIndex);
@@ -76,7 +88,7 @@ namespace ExpenseReport
 
         public void ShowPreviousExpense()
         {
-            if (myRawData.TotalRows() > 0)
+            if (DataLoaded())
             {
                 myIndex = --myIndex < 0?  myTotalRows-1: myIndex;
                 PopulateExpenseDetails(myIndex);
@@ -86,13 +98,13 @@ namespace ExpenseReport
         private void PopulateExpenseDetails(int index)
         {
             string expenseItemName = myRawData.GetExpenseItemName(myIndex);
-            List<ExpenseItem> expenseItems = myRawData.GetExpenseItems(expenseItemName);
+            ExpenseCollection expenseCollection = myRawData.GetExpenseItems(expenseItemName);
 
             expenseNameTextBox.Text = expenseItemName;
 
             myTable.Clear();
 
-            foreach (ExpenseItem expenseItem in expenseItems)
+            foreach (ExpenseItem expenseItem in expenseCollection.ExpenseItems)
             {
                 DataRow row = myTable.NewRow();
                 row[DATE] = expenseItem.Date;
@@ -100,8 +112,13 @@ namespace ExpenseReport
 
                 myTable.Rows.Add(row);
             }
-
             setCategoryDataGridView.DataSource = myTable;
+
+            categoryListBox.Items.Clear();
+            foreach (string category in expenseCollection.Categories)
+            {
+                categoryListBox.Items.Add(category);
+            }
 
         }
         public void UpdateSummary()
@@ -124,17 +141,41 @@ namespace ExpenseReport
 
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
         {
+            if (!DataLoaded())
+            {
+                return;
+            }
+
             if (categoryComboBox.SelectedItem.ToString() == "Create New...")
             {
                 CategoryWindow = new NewCategory();
                 DialogResult results = CategoryWindow.ShowDialog();
                 if (results == DialogResult.OK)
                 {
-                    myCategories.CategoryList.Add(CategoryWindow.Category);
-                    categoryComboBox.Items.Add(CategoryWindow.Category);
+                    if (!myCategories.CategoryList.Contains(CategoryWindow.Category))
+                    {
+                        myCategories.CategoryList.Add(CategoryWindow.Category);
+                        categoryComboBox.Items.Add(CategoryWindow.Category);
+                        categoryComboBox.SelectedItem= CategoryWindow.Category;
+                    }
                 }
                 CategoryWindow.Dispose();
             }
+            else
+            {
+                AddCategoryToExpense(categoryComboBox.SelectedItem.ToString());
+            }
+        }
+
+        private void AddCategoryToExpense(string category)
+        {
+            myRawData.AddCategoryToExpense(myIndex, category);
+            PopulateExpenseDetails(myIndex);
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            myCategories.SaveToFile();
         }
     }
 }

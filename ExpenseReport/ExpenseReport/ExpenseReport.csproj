@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExpenseCategories.cs" />
+    <Compile Include="ExpenseCollection.cs" />
     <Compile Include="ExpenseItem.cs" />
     <Compile Include="ExpenseTable.cs" />
     <Compile Include="Form1.cs">
