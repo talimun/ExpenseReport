@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ExpenseReport
 {
-    class ExpenseCategories
+    public class ExpenseCategories
     {
         private static string FILENAME = "categories.csv";
         private Form1 myParent;

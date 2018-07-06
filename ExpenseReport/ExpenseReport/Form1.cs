@@ -148,15 +148,15 @@ namespace ExpenseReport
 
             if (categoryComboBox.SelectedItem.ToString() == "Create New...")
             {
-                CategoryWindow = new NewCategory();
+                CategoryWindow = new NewCategory(myCategories);
                 DialogResult results = CategoryWindow.ShowDialog();
                 if (results == DialogResult.OK)
                 {
-                    if (!myCategories.CategoryList.Contains(CategoryWindow.Category))
+                    if (!myCategories.CategoryList.Contains(CategoryWindow.SelectedCategory))
                     {
-                        myCategories.CategoryList.Add(CategoryWindow.Category);
-                        categoryComboBox.Items.Add(CategoryWindow.Category);
-                        categoryComboBox.SelectedItem= CategoryWindow.Category;
+                        myCategories.CategoryList.Add(CategoryWindow.SelectedCategory);
+                        categoryComboBox.Items.Add(CategoryWindow.SelectedCategory);
+                        categoryComboBox.SelectedItem= CategoryWindow.SelectedCategory;
                     }
                 }
                 CategoryWindow.Dispose();

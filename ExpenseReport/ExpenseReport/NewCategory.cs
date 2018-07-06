@@ -12,22 +12,37 @@ namespace ExpenseReport
 {
     public partial class NewCategory : Form
     {
-        public string Category;
-        public NewCategory()
+        public string SelectedCategory;
+        public NewCategory(ExpenseCategories categories)
         {
             InitializeComponent();
-            Category = "";
+            SelectedCategory = "";
+            foreach (string category in categories.CategoryList)
+            currentCategoryListBox.Items.Add(category);
         }
 
         private void createButton_Click(object sender, EventArgs e)
         {
-            Category = categoryTextBox.Text;
+            SelectedCategory = categoryTextBox.Text;
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
         private void categoryTextBox_TextChanged(object sender, EventArgs e)
         {
+            if (categoryTextBox.Text.Length > 0)
+            {
+                CreateNewButton.Enabled = true;
+            }
+            else
+            {
+                CreateNewButton.Enabled = false;
+            }
+        }
+
+        private void CreateNewButton_Click(object sender, EventArgs e)
+        {
+
             if (categoryTextBox.Text.Length > 0)
             {
                 createButton.Enabled = true;
@@ -37,6 +52,5 @@ namespace ExpenseReport
                 createButton.Enabled = false;
             }
         }
-
     }
 }
