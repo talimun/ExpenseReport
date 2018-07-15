@@ -12,44 +12,75 @@ namespace ExpenseReport
 {
     public partial class NewCategory : Form
     {
-        public string SelectedCategory;
-        public NewCategory(ExpenseCategories categories)
+        public ExpenseCategories Categories;
+        Form1 myParent;
+        public NewCategory(Form1 parent)
         {
             InitializeComponent();
-            SelectedCategory = "";
-            foreach (string category in categories.CategoryList)
-            currentCategoryListBox.Items.Add(category);
+            CreateNewButton.Enabled = false;
+            myParent = parent;
         }
 
-        private void createButton_Click(object sender, EventArgs e)
+        public void LoadCategories()
         {
-            SelectedCategory = categoryTextBox.Text;
+
+            Categories = new ExpenseCategories(myParent);
+            Categories.LoadFromFile();
+
+            foreach (string category in Categories.CategoryList)
+            {
+                currentCategoryListBox.Items.Add(category);
+            }
+        }
+
+        private void doneButton_Click(object sender, EventArgs e)
+        {
+            Categories.SaveToFile();
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
         private void categoryTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (categoryTextBox.Text.Length > 0)
-            {
-                CreateNewButton.Enabled = true;
-            }
-            else
-            {
-                CreateNewButton.Enabled = false;
-            }
+            CreateNewButton.Enabled = categoryTextBox.Text.Length > 0;
+            
         }
 
         private void CreateNewButton_Click(object sender, EventArgs e)
         {
-
             if (categoryTextBox.Text.Length > 0)
             {
-                createButton.Enabled = true;
+                AddNewCategory(categoryTextBox.Text);
             }
-            else
+        }
+
+        private void AddNewCategory(string category)
+        {
+            Categories.CategoryList.Add(category);
+            if (!currentCategoryListBox.Items.Contains(category))
             {
-                createButton.Enabled = false;
+                currentCategoryListBox.Items.Add(category);
+            }
+            categoryTextBox.Clear();
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            if (currentCategoryListBox.SelectedIndex>=0)
+            {
+                Categories.CategoryList.Remove(currentCategoryListBox.SelectedItem.ToString());
+                currentCategoryListBox.Items.RemoveAt(currentCategoryListBox.SelectedIndex);
+            }
+        }
+
+        private void categoryTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (categoryTextBox.Text.Length > 0)
+                {
+                    AddNewCategory(categoryTextBox.Text);
+                }
             }
         }
     }

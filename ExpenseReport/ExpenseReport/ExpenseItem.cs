@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace ExpenseReport
 {
-    class ExpenseItem
+    public class ExpenseItem
     {
+        public ExpenseItem()
+        {
+
+        }
         public DateTime Date { get; set; }
         public string Name { get; set; }
         public decimal Cost { get; set; }

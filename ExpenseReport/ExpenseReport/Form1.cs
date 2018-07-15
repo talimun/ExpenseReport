@@ -14,11 +14,11 @@ namespace ExpenseReport
     public partial class Form1 : Form
     {
         ExpenseTable myRawData = new ExpenseTable();
-        ExpenseCategories myCategories;
+        
+        private NewCategory myCategoryWindow;
         private int myIndex = 0;
         private int myTotalRows = 0;
         private DataTable myTable = new DataTable();
-        private NewCategory CategoryWindow;
 
         const string DATE = "date";
         const string DESC = "description";
@@ -27,8 +27,10 @@ namespace ExpenseReport
         public Form1()
         {
             InitializeComponent();
-            myCategories = new ExpenseCategories(this);
-            myCategories.LoadFromFile();
+
+            myCategoryWindow = new NewCategory(this);
+
+            myCategoryWindow.LoadCategories();
             UpdateComboBox();
 
             DataColumn column = new DataColumn();
@@ -46,22 +48,12 @@ namespace ExpenseReport
             myTable.Columns.Add(column);
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            myRawData = new ExpenseTable(this);
-            if (openFileDialog1.ShowDialog()== DialogResult.OK)
-            {
-                myRawData.LoadFromFile(openFileDialog1.FileName);
-                myTotalRows = myRawData.TotalUniqueExpenses();
-                dataGridView1.DataSource = myRawData.Table;
-                UpdateSummary();
-                ShowNextExpense();
-            }
 
-        }
         private void UpdateComboBox()
         {
-            foreach (string category in myCategories.CategoryList)
+            categoryComboBox.Items.Clear();
+            categoryComboBox.Items.Add("Manage Categories");
+            foreach (string category in myCategoryWindow.Categories.CategoryList)
             {
                 categoryComboBox.Items.Add(category);
             }
@@ -97,10 +89,9 @@ namespace ExpenseReport
 
         private void PopulateExpenseDetails(int index)
         {
-            string expenseItemName = myRawData.GetExpenseItemName(myIndex);
-            ExpenseCollection expenseCollection = myRawData.GetExpenseItems(expenseItemName);
+            ExpenseCollection expenseCollection = myRawData.GetExpenseItems(myIndex);
 
-            expenseNameTextBox.Text = expenseItemName;
+            expenseNameTextBox.Text = expenseCollection.ExpenseName;
 
             myTable.Clear();
 
@@ -119,8 +110,8 @@ namespace ExpenseReport
             {
                 categoryListBox.Items.Add(category);
             }
-
         }
+        
         public void UpdateSummary()
         {
             int catagories = myRawData.TotalCategories();
@@ -146,20 +137,11 @@ namespace ExpenseReport
                 return;
             }
 
-            if (categoryComboBox.SelectedItem.ToString() == "Create New...")
+            if (categoryComboBox.SelectedIndex==0)
             {
-                CategoryWindow = new NewCategory(myCategories);
-                DialogResult results = CategoryWindow.ShowDialog();
-                if (results == DialogResult.OK)
-                {
-                    if (!myCategories.CategoryList.Contains(CategoryWindow.SelectedCategory))
-                    {
-                        myCategories.CategoryList.Add(CategoryWindow.SelectedCategory);
-                        categoryComboBox.Items.Add(CategoryWindow.SelectedCategory);
-                        categoryComboBox.SelectedItem= CategoryWindow.SelectedCategory;
-                    }
-                }
-                CategoryWindow.Dispose();
+                DialogResult results = myCategoryWindow.ShowDialog();
+
+                UpdateComboBox();
             }
             else
             {
@@ -173,9 +155,41 @@ namespace ExpenseReport
             PopulateExpenseDetails(myIndex);
         }
 
+        private void DeleteSelectedButton_Click(object sender, EventArgs e)
+        {
+            if (categoryListBox.SelectedIndex >= 0)
+            {
+                ExpenseCollection expenseCollection = myRawData.GetExpenseItems(myIndex);
+                expenseCollection.RemoveCategory(categoryListBox.SelectedItem.ToString());
+                categoryListBox.Items.Remove(categoryListBox.SelectedItem);
+            }
+
+        }
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            myRawData = new ExpenseTable(this);
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                myRawData.LoadFromFile(openFileDialog1.FileName);
+                myTotalRows = myRawData.TotalUniqueExpenses();
+                dataGridView1.DataSource = myRawData.Table;
+                categoryComboBox.Enabled = true;
+                UpdateSummary();
+                ShowNextExpense();
+            }
+        }
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            myCategories.SaveToFile();
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                myRawData.SaveToFile(saveFileDialog1.FileName);
+            }
+        }
+
+
+        private void addExpensesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

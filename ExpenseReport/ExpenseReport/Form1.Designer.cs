@@ -32,11 +32,12 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.DeleteSelectedButton = new System.Windows.Forms.Button();
             this.categoryListBox = new System.Windows.Forms.ListBox();
             this.skipButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
@@ -52,7 +53,10 @@
             this.logFile = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.addExpensesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
+            this.newProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -64,6 +68,10 @@
             this.tabPage3.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.Filter = "CSV files|*.csv";
             // 
             // menuStrip1
             // 
@@ -79,8 +87,10 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newProjectToolStripMenuItem,
             this.openToolStripMenuItem,
-            this.saveToolStripMenuItem});
+            this.saveToolStripMenuItem,
+            this.addExpensesToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(50, 29);
             this.fileToolStripMenuItem.Text = "File";
@@ -88,9 +98,16 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(140, 30);
-            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.openToolStripMenuItem.Text = "Open Project";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.saveToolStripMenuItem.Text = "Save Project";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // dataGridView1
             // 
@@ -135,7 +152,7 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.DeleteSelectedButton);
             this.groupBox2.Controls.Add(this.categoryListBox);
             this.groupBox2.Controls.Add(this.skipButton);
             this.groupBox2.Controls.Add(this.saveButton);
@@ -151,16 +168,17 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Set Categories";
             // 
-            // button1
+            // DeleteSelectedButton
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.DeleteSelectedButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(437, 293);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(144, 58);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "delete selected";
-            this.button1.UseVisualStyleBackColor = true;
+            this.DeleteSelectedButton.Location = new System.Drawing.Point(437, 293);
+            this.DeleteSelectedButton.Name = "DeleteSelectedButton";
+            this.DeleteSelectedButton.Size = new System.Drawing.Size(144, 58);
+            this.DeleteSelectedButton.TabIndex = 9;
+            this.DeleteSelectedButton.Text = "delete selected";
+            this.DeleteSelectedButton.UseVisualStyleBackColor = true;
+            this.DeleteSelectedButton.Click += new System.EventHandler(this.DeleteSelectedButton_Click);
             // 
             // categoryListBox
             // 
@@ -226,9 +244,8 @@
             // 
             // categoryComboBox
             // 
+            this.categoryComboBox.Enabled = false;
             this.categoryComboBox.FormattingEnabled = true;
-            this.categoryComboBox.Items.AddRange(new object[] {
-            "Create New..."});
             this.categoryComboBox.Location = new System.Drawing.Point(29, 160);
             this.categoryComboBox.Name = "categoryComboBox";
             this.categoryComboBox.Size = new System.Drawing.Size(225, 28);
@@ -316,12 +333,27 @@
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
             this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 22);
             // 
-            // saveToolStripMenuItem
+            // saveFileDialog1
             // 
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
-            this.saveToolStripMenuItem.Text = "Save";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            this.saveFileDialog1.Filter = "ExpenseReport Files|*.xml";
+            // 
+            // addExpensesToolStripMenuItem
+            // 
+            this.addExpensesToolStripMenuItem.Name = "addExpensesToolStripMenuItem";
+            this.addExpensesToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.addExpensesToolStripMenuItem.Text = "Add Expenses";
+            this.addExpensesToolStripMenuItem.Click += new System.EventHandler(this.addExpensesToolStripMenuItem_Click);
+            // 
+            // openFileDialog2
+            // 
+            this.openFileDialog2.FileName = "openFileDialog2";
+            this.openFileDialog2.Filter = "Expense Report files|*.xml";
+            // 
+            // newProjectToolStripMenuItem
+            // 
+            this.newProjectToolStripMenuItem.Name = "newProjectToolStripMenuItem";
+            this.newProjectToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.newProjectToolStripMenuItem.Text = "New Project";
             // 
             // Form1
             // 
@@ -380,8 +412,12 @@
         private System.Windows.Forms.ComboBox categoryComboBox;
         private System.Windows.Forms.DataGridView setCategoryDataGridView;
         private System.Windows.Forms.ListBox categoryListBox;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button DeleteSelectedButton;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.ToolStripMenuItem addExpensesToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openFileDialog2;
+        private System.Windows.Forms.ToolStripMenuItem newProjectToolStripMenuItem;
     }
 }
 

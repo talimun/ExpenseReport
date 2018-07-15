@@ -6,14 +6,27 @@ using System.Threading.Tasks;
 
 namespace ExpenseReport
 {
-    class ExpenseCollection
+    public class ExpenseCollection
     {
-        public List<ExpenseItem> ExpenseItems = new List<ExpenseItem>();
-        public List<string> Categories = new List<string>();
+        public List<ExpenseItem> ExpenseItems;
+        public List<string> Categories;
+        public string ExpenseName;
 
+        public ExpenseCollection()
+        {
+            ExpenseItems = new List<ExpenseItem>();
+            Categories = new List<string>();
+            ExpenseName = "";
+
+        }
         public ExpenseCollection(ExpenseItem expenseItem)
         {
+
+            ExpenseItems = new List<ExpenseItem>();
+            Categories = new List<string>();
+            ExpenseName = "";
             AddExpense(expenseItem);
+            ExpenseName = expenseItem.Name;
         }
 
         public void AddExpense(ExpenseItem expenseItem)
@@ -27,5 +40,11 @@ namespace ExpenseReport
                 Categories.Add(category);
             }
         }
+        public void RemoveCategory(string category)
+        {
+            Categories.Remove(category);
+        }
+
+
     }
 }
