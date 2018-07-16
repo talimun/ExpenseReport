@@ -13,7 +13,7 @@ namespace ExpenseReport
 {
     public partial class Form1 : Form
     {
-        ExpenseTable myRawData = new ExpenseTable();
+        ExpenseTable myRawData;
         
         private NewCategory myCategoryWindow;
         private int myIndex = 0;
@@ -28,6 +28,7 @@ namespace ExpenseReport
         {
             InitializeComponent();
 
+            myRawData = new ExpenseTable(this);
             myCategoryWindow = new NewCategory(this);
 
             myCategoryWindow.LoadCategories();
@@ -168,9 +169,9 @@ namespace ExpenseReport
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             myRawData = new ExpenseTable(this);
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            if (openFileDialog2.ShowDialog() == DialogResult.OK)
             {
-                myRawData.LoadFromFile(openFileDialog1.FileName);
+                myRawData.LoadFromFile(openFileDialog2.FileName);
                 myTotalRows = myRawData.TotalUniqueExpenses();
                 dataGridView1.DataSource = myRawData.Table;
                 categoryComboBox.Enabled = true;
@@ -189,7 +190,14 @@ namespace ExpenseReport
 
         private void addExpensesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                myRawData.AddExpenseFromFile(openFileDialog1.FileName);
+                myTotalRows = myRawData.TotalUniqueExpenses();
+                dataGridView1.DataSource = myRawData.Table;
+                UpdateSummary();
+                ShowNextExpense();
+            }
         }
     }
 }

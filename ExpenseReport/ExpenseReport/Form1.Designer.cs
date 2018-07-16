@@ -31,8 +31,10 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addExpensesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -54,9 +56,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.addExpensesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
-            this.newProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -95,19 +95,32 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(50, 29);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // newProjectToolStripMenuItem
+            // 
+            this.newProjectToolStripMenuItem.Name = "newProjectToolStripMenuItem";
+            this.newProjectToolStripMenuItem.Size = new System.Drawing.Size(207, 30);
+            this.newProjectToolStripMenuItem.Text = "New Project";
+            // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(207, 30);
             this.openToolStripMenuItem.Text = "Open Project";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(207, 30);
             this.saveToolStripMenuItem.Text = "Save Project";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // addExpensesToolStripMenuItem
+            // 
+            this.addExpensesToolStripMenuItem.Name = "addExpensesToolStripMenuItem";
+            this.addExpensesToolStripMenuItem.Size = new System.Drawing.Size(207, 30);
+            this.addExpensesToolStripMenuItem.Text = "Add Expenses";
+            this.addExpensesToolStripMenuItem.Click += new System.EventHandler(this.addExpensesToolStripMenuItem_Click);
             // 
             // dataGridView1
             // 
@@ -337,23 +350,9 @@
             // 
             this.saveFileDialog1.Filter = "ExpenseReport Files|*.xml";
             // 
-            // addExpensesToolStripMenuItem
-            // 
-            this.addExpensesToolStripMenuItem.Name = "addExpensesToolStripMenuItem";
-            this.addExpensesToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
-            this.addExpensesToolStripMenuItem.Text = "Add Expenses";
-            this.addExpensesToolStripMenuItem.Click += new System.EventHandler(this.addExpensesToolStripMenuItem_Click);
-            // 
             // openFileDialog2
             // 
-            this.openFileDialog2.FileName = "openFileDialog2";
             this.openFileDialog2.Filter = "Expense Report files|*.xml";
-            // 
-            // newProjectToolStripMenuItem
-            // 
-            this.newProjectToolStripMenuItem.Name = "newProjectToolStripMenuItem";
-            this.newProjectToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
-            this.newProjectToolStripMenuItem.Text = "New Project";
             // 
             // Form1
             // 

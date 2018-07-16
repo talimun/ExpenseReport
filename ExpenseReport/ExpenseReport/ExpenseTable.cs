@@ -19,13 +19,7 @@ namespace ExpenseReport
         public DataTable Table {  get; }
         private Dictionary<string, ExpenseCollection > myExpenseItemsByName;
         private Form1 myParent;
-
-        public ExpenseTable()
-        {
-            Table = new DataTable();
-            myExpenseItemsByName = new Dictionary<string, ExpenseCollection>();
-
-        }
+        
         public ExpenseTable(Form1 parent)
         {
             myParent = parent;
@@ -56,12 +50,12 @@ namespace ExpenseReport
         {
             return Table.Rows.Count;
         }
-        public bool LoadFromFile(string filename)
+
+
+        public bool AddExpenseFromFile(string filename)
         {
             try
             {
-
-
                 FileStream stream = new FileStream(filename, FileMode.Open);
                 TextFieldParser reader = new TextFieldParser(stream);
                 reader.TextFieldType = FieldType.Delimited;
@@ -165,89 +159,35 @@ namespace ExpenseReport
             myExpenseItemsByName.ElementAt(index).Value.AddCategory(category);
         }
 
-
-
-        public void SaveToFile(string filename)
+        public void LoadFromFile(string filename)
         {
-            StreamWriter outstream = new StreamWriter(filename);
 
-            foreach (ExpenseCollection collection in myExpenseItemsByName.Values)
-            {
-                XmlDocument xmlDocument = new XmlDocument();
-                XmlSerializer serializer = new XmlSerializer(collection.GetType());
-                using (MemoryStream stream = new MemoryStream())
-                {
-                    serializer.Serialize(stream, collection);
-                    stream.Position = 0;
-                    xmlDocument.Load(stream);
-                    xmlDocument.Save(outstream);
-
-                    stream.Close();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Serializes an object.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="serializableObject"></param>
-        /// <param name="fileName"></param>
-        public void SerializeObject<T>(T serializableObject, string fileName)
-        {
-            if (serializableObject == null) { return; }
+            List<ExpenseCollection> collectionsList; 
 
             try
             {
                 XmlDocument xmlDocument = new XmlDocument();
-                XmlSerializer serializer = new XmlSerializer(serializableObject.GetType());
-                using (MemoryStream stream = new MemoryStream())
-                {
-                    serializer.Serialize(stream, serializableObject);
-                    stream.Position = 0;
-                    xmlDocument.Load(stream);
-                    xmlDocument.Save(fileName);
-                    stream.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-
-                myParent.Log(ex.Message);
-            }
-        }
-
-
-        /// <summary>
-        /// Deserializes an xml file into an object list
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="fileName"></param>
-        /// <returns></returns>
-        public T DeSerializeObject<T>(string fileName)
-        {
-            if (string.IsNullOrEmpty(fileName)) { return default(T); }
-
-            T objectOut = default(T);
-
-            try
-            {
-                XmlDocument xmlDocument = new XmlDocument();
-                xmlDocument.Load(fileName);
+                xmlDocument.Load(filename);
                 string xmlString = xmlDocument.OuterXml;
-
                 using (StringReader read = new StringReader(xmlString))
                 {
-                    Type outType = typeof(T);
+                    Type outType = typeof(List<ExpenseCollection>);
 
                     XmlSerializer serializer = new XmlSerializer(outType);
                     using (XmlReader reader = new XmlTextReader(read))
                     {
-                        objectOut = (T)serializer.Deserialize(reader);
+                        collectionsList = (List<ExpenseCollection>)serializer.Deserialize(reader);
                         reader.Close();
                     }
 
                     read.Close();
+                    myExpenseItemsByName.Clear();
+                    foreach (ExpenseCollection collection in collectionsList)
+                    {
+                        myExpenseItemsByName.Add(collection.ExpenseName, collection);
+                    }
+
+                    GenerateReport();
                 }
             }
             catch (Exception ex)
@@ -255,8 +195,29 @@ namespace ExpenseReport
                 //Log exception here
                 myParent.Log(ex.Message);
             }
-
-            return objectOut;
         }
+
+        public void SaveToFile(string filename)
+        {
+            StreamWriter outstream = new StreamWriter(filename);
+
+            List<ExpenseCollection> collectionsList = new List<ExpenseCollection>();
+
+            collectionsList.AddRange(myExpenseItemsByName.Values);
+            XmlDocument xmlDocument = new XmlDocument();
+            XmlSerializer serializer = new XmlSerializer(collectionsList.GetType());
+            using (MemoryStream stream = new MemoryStream())
+            {
+                serializer.Serialize(stream, collectionsList);
+                stream.Position = 0;
+                xmlDocument.Load(stream);
+                xmlDocument.Save(outstream);
+
+                stream.Close();
+            }
+
+        }
+        
+        
     }
 }
