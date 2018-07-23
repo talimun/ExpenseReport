@@ -16,15 +16,15 @@ namespace ExpenseReport
         const string DATE = "date";
         const string DESC = "description"; 
         const string COST = "cost";
-        public DataTable Table {  get; }
-        private Dictionary<string, ExpenseCollection > myExpenseItemsByName;
+        public DataTable Table;
+        private SortedDictionary<string, ExpenseCollection > myExpenseItemsByName;
         private Form1 myParent;
         
         public ExpenseTable(Form1 parent)
         {
             myParent = parent;
             Table = new DataTable();
-            myExpenseItemsByName = new Dictionary<string, ExpenseCollection>();
+            myExpenseItemsByName = new SortedDictionary<string, ExpenseCollection>();
 
         }
 
@@ -99,7 +99,7 @@ namespace ExpenseReport
                         myParent.Log(ex.Message);
                     }
                 }
-
+                stream.Close();
                 GenerateReport();
 
                 return true;
@@ -116,7 +116,7 @@ namespace ExpenseReport
         void GenerateReport()
         {
 
-            Table.Clear();
+            Table = new DataTable();
             DataColumn column = new DataColumn();
             column.DataType = System.Type.GetType("System.DateTime");
             column.ColumnName = DATE;

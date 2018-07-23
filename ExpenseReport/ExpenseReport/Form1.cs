@@ -195,7 +195,9 @@ namespace ExpenseReport
                 myRawData.AddExpenseFromFile(openFileDialog1.FileName);
                 myTotalRows = myRawData.TotalUniqueExpenses();
                 dataGridView1.DataSource = myRawData.Table;
+                categoryComboBox.Enabled = true;
                 UpdateSummary();
+                myIndex = 0;
                 ShowNextExpense();
             }
         }

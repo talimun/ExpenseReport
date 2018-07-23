@@ -31,6 +31,7 @@ namespace ExpenseReport
 
         public void AddExpense(ExpenseItem expenseItem)
         {
+            Add code here to check for dups
             ExpenseItems.Add(expenseItem);
         }
         public void AddCategory(string category)
