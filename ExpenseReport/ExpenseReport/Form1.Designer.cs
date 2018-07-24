@@ -39,10 +39,12 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.prevUncatButton = new System.Windows.Forms.Button();
+            this.nextUncatButton = new System.Windows.Forms.Button();
             this.DeleteSelectedButton = new System.Windows.Forms.Button();
             this.categoryListBox = new System.Windows.Forms.ListBox();
-            this.skipButton = new System.Windows.Forms.Button();
-            this.saveButton = new System.Windows.Forms.Button();
+            this.previousButton = new System.Windows.Forms.Button();
+            this.nextButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.expenseNameTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -165,10 +167,12 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.prevUncatButton);
+            this.groupBox2.Controls.Add(this.nextUncatButton);
             this.groupBox2.Controls.Add(this.DeleteSelectedButton);
             this.groupBox2.Controls.Add(this.categoryListBox);
-            this.groupBox2.Controls.Add(this.skipButton);
-            this.groupBox2.Controls.Add(this.saveButton);
+            this.groupBox2.Controls.Add(this.previousButton);
+            this.groupBox2.Controls.Add(this.nextButton);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.expenseNameTextBox);
             this.groupBox2.Controls.Add(this.label1);
@@ -180,6 +184,26 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Set Categories";
+            // 
+            // prevUncatButton
+            // 
+            this.prevUncatButton.Location = new System.Drawing.Point(10, 436);
+            this.prevUncatButton.Name = "prevUncatButton";
+            this.prevUncatButton.Size = new System.Drawing.Size(198, 35);
+            this.prevUncatButton.TabIndex = 11;
+            this.prevUncatButton.Text = "Previous Uncategorised";
+            this.prevUncatButton.UseVisualStyleBackColor = true;
+            this.prevUncatButton.Click += new System.EventHandler(this.prevUncatButton_Click);
+            // 
+            // nextUncatButton
+            // 
+            this.nextUncatButton.Location = new System.Drawing.Point(420, 436);
+            this.nextUncatButton.Name = "nextUncatButton";
+            this.nextUncatButton.Size = new System.Drawing.Size(161, 35);
+            this.nextUncatButton.TabIndex = 10;
+            this.nextUncatButton.Text = "Next Uncategorised";
+            this.nextUncatButton.UseVisualStyleBackColor = true;
+            this.nextUncatButton.Click += new System.EventHandler(this.nextUncatButton_Click);
             // 
             // DeleteSelectedButton
             // 
@@ -204,28 +228,28 @@
             this.categoryListBox.Size = new System.Drawing.Size(144, 144);
             this.categoryListBox.TabIndex = 8;
             // 
-            // skipButton
+            // previousButton
             // 
-            this.skipButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.skipButton.Location = new System.Drawing.Point(10, 437);
-            this.skipButton.Name = "skipButton";
-            this.skipButton.Size = new System.Drawing.Size(118, 35);
-            this.skipButton.TabIndex = 7;
-            this.skipButton.Text = "Previous";
-            this.skipButton.UseVisualStyleBackColor = true;
-            this.skipButton.Click += new System.EventHandler(this.skipButton_Click);
+            this.previousButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.previousButton.Location = new System.Drawing.Point(214, 436);
+            this.previousButton.Name = "previousButton";
+            this.previousButton.Size = new System.Drawing.Size(86, 35);
+            this.previousButton.TabIndex = 7;
+            this.previousButton.Text = "Previous";
+            this.previousButton.UseVisualStyleBackColor = true;
+            this.previousButton.Click += new System.EventHandler(this.previousButton_Click);
             // 
-            // saveButton
+            // nextButton
             // 
-            this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.nextButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveButton.Location = new System.Drawing.Point(437, 437);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(144, 36);
-            this.saveButton.TabIndex = 6;
-            this.saveButton.Text = "Next";
-            this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            this.nextButton.Location = new System.Drawing.Point(345, 436);
+            this.nextButton.Name = "nextButton";
+            this.nextButton.Size = new System.Drawing.Size(69, 36);
+            this.nextButton.TabIndex = 6;
+            this.nextButton.Text = "Next";
+            this.nextButton.UseVisualStyleBackColor = true;
+            this.nextButton.Click += new System.EventHandler(this.nextButton_Click);
             // 
             // label2
             // 
@@ -403,8 +427,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label UncatagorisedNumberLabel;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button skipButton;
-        private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.Button previousButton;
+        private System.Windows.Forms.Button nextButton;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox expenseNameTextBox;
         private System.Windows.Forms.Label label1;
@@ -417,6 +441,8 @@
         private System.Windows.Forms.ToolStripMenuItem addExpensesToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
         private System.Windows.Forms.ToolStripMenuItem newProjectToolStripMenuItem;
+        private System.Windows.Forms.Button prevUncatButton;
+        private System.Windows.Forms.Button nextUncatButton;
     }
 }
 

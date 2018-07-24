@@ -31,8 +31,19 @@ namespace ExpenseReport
 
         public void AddExpense(ExpenseItem expenseItem)
         {
-            Add code here to check for dups
-            ExpenseItems.Add(expenseItem);
+            bool dupe = false;
+            foreach (ExpenseItem item in ExpenseItems)
+            {
+                if (item.Equals(expenseItem))
+                {
+                    dupe = true;
+                    break;
+                }
+            }
+            if (!dupe)
+            {
+                ExpenseItems.Add(expenseItem);
+            }
         }
         public void AddCategory(string category)
         {
@@ -46,6 +57,10 @@ namespace ExpenseReport
             Categories.Remove(category);
         }
 
+        public bool IsCategorised()
+        {
+            return Categories.Count > 0;
+        }
 
     }
 }

@@ -42,15 +42,38 @@ namespace ExpenseReport
         {
             return Table.Rows.Count;
         }
-        public int TotalCategories()
+        public int TotalUncategorised()
         {
-            return Table.Rows.Count;
+            int categorised = 0;
+            foreach (ExpenseCollection expense in myExpenseItemsByName.Values)
+            {
+                categorised = expense.IsCategorised() ? categorised+1 : categorised;
+            }
+            return TotalUniqueExpenses() - categorised;
         }
         public int UndefinedRows()
         {
             return Table.Rows.Count;
         }
 
+        public int GetNextUncategorised(int currentIndex)
+        {
+            int index = -1;
+            while (index == -1)
+            {
+                if(myExpenseItemsByName.ElementAt(currentIndex).Value.IsCategorised())
+                {
+
+                }
+            }
+            
+            return 0;
+        }
+
+        public int GetPreviousUncategorised(int currentIndex)
+        {
+            return 0;
+        }
 
         public bool AddExpenseFromFile(string filename)
         {

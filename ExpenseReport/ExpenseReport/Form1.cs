@@ -70,6 +70,15 @@ namespace ExpenseReport
             logFile.AppendText(logline);
         }
 
+        public void ShowFirstExpense()
+        {
+            if (DataLoaded())
+            {
+                myIndex = 0;
+                PopulateExpenseDetails(myIndex);
+            }
+        }
+
         public void ShowNextExpense()
         {
             if (DataLoaded())
@@ -115,20 +124,36 @@ namespace ExpenseReport
         
         public void UpdateSummary()
         {
-            int catagories = myRawData.TotalCategories();
-            int underfinedRows = myRawData.UndefinedRows();
-            UncatagorisedNumberLabel.Text = myTotalRows + " Rows loaded";
+            int uncategorised = myRawData.TotalUncategorised();
+            int expenses = myRawData.TotalUniqueExpenses();
+            string summaryLabel = expenses + " Expenses Loaded\n" +
+                   uncategorised + " Uncategorised Expenses";
+            UncatagorisedNumberLabel.Text = summaryLabel;
 
         }
 
-        private void saveButton_Click(object sender, EventArgs e)
+        private void nextButton_Click(object sender, EventArgs e)
         {
             ShowNextExpense();
         }
 
-        private void skipButton_Click(object sender, EventArgs e)
+        private void previousButton_Click(object sender, EventArgs e)
         {
             ShowPreviousExpense();
+        }
+
+
+        private void nextUncatButton_Click(object sender, EventArgs e)
+        {
+            myIndex = myRawData.GetNextUncategorised(myIndex);
+            PopulateExpenseDetails(myIndex);
+        }
+
+        private void prevUncatButton_Click(object sender, EventArgs e)
+        {
+
+            myIndex = myRawData.GetPreviousUncategorised(myIndex);
+            PopulateExpenseDetails(myIndex);
         }
 
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
@@ -154,6 +179,7 @@ namespace ExpenseReport
         {
             myRawData.AddCategoryToExpense(myIndex, category);
             PopulateExpenseDetails(myIndex);
+            UpdateSummary();
         }
 
         private void DeleteSelectedButton_Click(object sender, EventArgs e)
@@ -176,7 +202,7 @@ namespace ExpenseReport
                 dataGridView1.DataSource = myRawData.Table;
                 categoryComboBox.Enabled = true;
                 UpdateSummary();
-                ShowNextExpense();
+                ShowFirstExpense();
             }
         }
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -197,9 +223,9 @@ namespace ExpenseReport
                 dataGridView1.DataSource = myRawData.Table;
                 categoryComboBox.Enabled = true;
                 UpdateSummary();
-                myIndex = 0;
-                ShowNextExpense();
+                ShowFirstExpense();
             }
         }
+        
     }
 }

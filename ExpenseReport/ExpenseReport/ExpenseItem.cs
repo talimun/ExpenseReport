@@ -23,6 +23,14 @@ namespace ExpenseReport
             Name = name;
             Cost = decimal.Parse(cost, NumberStyles.AllowCurrencySymbol | NumberStyles.Number);
         }
-        
+        public override bool Equals(Object obj)
+        {
+            // Check for null values and compare run-time types.
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            ExpenseItem item = (ExpenseItem)obj;
+            return Date.Equals(item.Date) && Name.Equals(item.Name) && Cost.Equals(item.Cost);
+        }
     }
 }
