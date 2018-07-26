@@ -31,9 +31,9 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addExpensesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -89,38 +89,39 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newProjectToolStripMenuItem,
+            this.addExpensesToolStripMenuItem,
             this.openToolStripMenuItem,
-            this.saveToolStripMenuItem,
-            this.addExpensesToolStripMenuItem});
+            this.saveProjectToolStripMenuItem,
+            this.saveAsToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(50, 29);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // newProjectToolStripMenuItem
+            // saveProjectToolStripMenuItem
             // 
-            this.newProjectToolStripMenuItem.Name = "newProjectToolStripMenuItem";
-            this.newProjectToolStripMenuItem.Size = new System.Drawing.Size(207, 30);
-            this.newProjectToolStripMenuItem.Text = "New Project";
+            this.saveProjectToolStripMenuItem.Name = "saveProjectToolStripMenuItem";
+            this.saveProjectToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.saveProjectToolStripMenuItem.Text = "Save Project";
+            this.saveProjectToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(207, 30);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
             this.openToolStripMenuItem.Text = "Open Project";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
-            // saveToolStripMenuItem
+            // saveAsToolStripMenuItem
             // 
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(207, 30);
-            this.saveToolStripMenuItem.Text = "Save Project";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.saveAsToolStripMenuItem.Text = "Save Project As";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // addExpensesToolStripMenuItem
             // 
             this.addExpensesToolStripMenuItem.Name = "addExpensesToolStripMenuItem";
-            this.addExpensesToolStripMenuItem.Size = new System.Drawing.Size(207, 30);
+            this.addExpensesToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
             this.addExpensesToolStripMenuItem.Text = "Add Expenses";
             this.addExpensesToolStripMenuItem.Click += new System.EventHandler(this.addExpensesToolStripMenuItem_Click);
             // 
@@ -437,11 +438,11 @@
         private System.Windows.Forms.DataGridView setCategoryDataGridView;
         private System.Windows.Forms.ListBox categoryListBox;
         private System.Windows.Forms.Button DeleteSelectedButton;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem addExpensesToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
-        private System.Windows.Forms.ToolStripMenuItem newProjectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveProjectToolStripMenuItem;
         private System.Windows.Forms.Button prevUncatButton;
         private System.Windows.Forms.Button nextUncatButton;
     }

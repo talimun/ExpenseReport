@@ -207,13 +207,43 @@ namespace ExpenseReport
         }
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            if (myTotalRows > 0)
             {
-                myRawData.SaveToFile(saveFileDialog1.FileName);
+                if (saveFileDialog1.FileName.Length == 0)
+                {
+                    if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                    {
+                        myRawData.SaveToFile(saveFileDialog1.FileName);
+                    }
+                }
+                else
+                {
+                    myRawData.SaveToFile(saveFileDialog1.FileName);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No data loaded for saving","Error");
             }
         }
 
 
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            if (myTotalRows > 0)
+            {
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    myRawData.SaveToFile(saveFileDialog1.FileName);
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("No data loaded for saving", "Error");
+            }
+        }
         private void addExpensesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
