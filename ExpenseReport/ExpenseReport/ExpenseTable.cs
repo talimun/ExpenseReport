@@ -58,21 +58,38 @@ namespace ExpenseReport
 
         public int GetNextUncategorised(int currentIndex)
         {
-            int index = -1;
-            while (index == -1)
-            {
-                if(myExpenseItemsByName.ElementAt(currentIndex).Value.IsCategorised())
-                {
+            int startingIndex = currentIndex++;
+            currentIndex = (currentIndex) % myExpenseItemsByName.Count();
 
+            while (myExpenseItemsByName.ElementAt(currentIndex).Value.IsCategorised())
+            {
+
+                currentIndex = (++currentIndex) % myExpenseItemsByName.Count();
+                if (currentIndex == startingIndex)
+                {
+                    break;
                 }
             }
             
-            return 0;
+            return currentIndex;
         }
 
         public int GetPreviousUncategorised(int currentIndex)
         {
-            return 0;
+            int startingIndex = currentIndex--;
+            currentIndex = currentIndex < 0 ? myExpenseItemsByName.Count() - 1 : currentIndex;
+
+            while (myExpenseItemsByName.ElementAt(currentIndex).Value.IsCategorised())
+            {
+
+                currentIndex = --currentIndex < 0 ? myExpenseItemsByName.Count() - 1 : currentIndex;
+                if (currentIndex == startingIndex)
+                {
+                    break;
+                }
+            }
+
+            return currentIndex;
         }
 
         public bool AddExpenseFromFile(string filename)

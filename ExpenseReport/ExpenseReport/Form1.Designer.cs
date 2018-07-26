@@ -187,6 +187,7 @@
             // 
             // prevUncatButton
             // 
+            this.prevUncatButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.prevUncatButton.Location = new System.Drawing.Point(10, 436);
             this.prevUncatButton.Name = "prevUncatButton";
             this.prevUncatButton.Size = new System.Drawing.Size(198, 35);
@@ -197,9 +198,10 @@
             // 
             // nextUncatButton
             // 
-            this.nextUncatButton.Location = new System.Drawing.Point(420, 436);
+            this.nextUncatButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.nextUncatButton.Location = new System.Drawing.Point(411, 436);
             this.nextUncatButton.Name = "nextUncatButton";
-            this.nextUncatButton.Size = new System.Drawing.Size(161, 35);
+            this.nextUncatButton.Size = new System.Drawing.Size(170, 35);
             this.nextUncatButton.TabIndex = 10;
             this.nextUncatButton.Text = "Next Uncategorised";
             this.nextUncatButton.UseVisualStyleBackColor = true;
@@ -241,11 +243,10 @@
             // 
             // nextButton
             // 
-            this.nextButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.nextButton.Location = new System.Drawing.Point(345, 436);
+            this.nextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.nextButton.Location = new System.Drawing.Point(335, 436);
             this.nextButton.Name = "nextButton";
-            this.nextButton.Size = new System.Drawing.Size(69, 36);
+            this.nextButton.Size = new System.Drawing.Size(69, 35);
             this.nextButton.TabIndex = 6;
             this.nextButton.Text = "Next";
             this.nextButton.UseVisualStyleBackColor = true;
