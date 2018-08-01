@@ -101,7 +101,7 @@ namespace ExpenseReport
                 reader.TextFieldType = FieldType.Delimited;
                 reader.SetDelimiters(",");
 
-                string[] data = reader.ReadFields();
+                /*string[] data = reader.ReadFields();
                 if(!data[0].Equals(DATE))
                 {
                     throw new Exception("Error parsing Date column");
@@ -117,7 +117,7 @@ namespace ExpenseReport
                 {
                     throw new Exception("Error parsing Date column");
                 }
-
+                */
                 while (!reader.EndOfData)
                 {
 

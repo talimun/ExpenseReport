@@ -19,6 +19,7 @@ namespace ExpenseReport
         private int myIndex = 0;
         private int myTotalRows = 0;
         private DataTable myTable = new DataTable();
+        private string savedFile = "";
 
         const string DATE = "date";
         const string DESC = "description";
@@ -197,7 +198,8 @@ namespace ExpenseReport
             myRawData = new ExpenseTable(this);
             if (openFileDialog2.ShowDialog() == DialogResult.OK)
             {
-                myRawData.LoadFromFile(openFileDialog2.FileName);
+                savedFile = openFileDialog2.FileName;
+                myRawData.LoadFromFile(savedFile);
                 myTotalRows = myRawData.TotalUniqueExpenses();
                 dataGridView1.DataSource = myRawData.Table;
                 categoryComboBox.Enabled = true;
@@ -209,16 +211,17 @@ namespace ExpenseReport
         {
             if (myTotalRows > 0)
             {
-                if (saveFileDialog1.FileName.Length == 0)
+                if (savedFile.Length == 0)
                 {
                     if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                     {
-                        myRawData.SaveToFile(saveFileDialog1.FileName);
+                        savedFile = saveFileDialog1.FileName;
+                        myRawData.SaveToFile(savedFile);
                     }
                 }
                 else
                 {
-                    myRawData.SaveToFile(saveFileDialog1.FileName);
+                    myRawData.SaveToFile(savedFile);
                 }
             }
             else
@@ -235,6 +238,7 @@ namespace ExpenseReport
             {
                 if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
+                    savedFile = saveFileDialog1.FileName;
                     myRawData.SaveToFile(saveFileDialog1.FileName);
                 }
 

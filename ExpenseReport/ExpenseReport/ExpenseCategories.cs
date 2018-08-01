@@ -10,7 +10,7 @@ namespace ExpenseReport
 {
     public class ExpenseCategories
     {
-        private static string FILENAME = "categories.csv";
+        private static string FILENAME = Path.Combine(Environment.ExpandEnvironmentVariables("%userprofile%"), "Documents\\categories.csv") ;
         private Form1 myParent;
 
         public List<string> CategoryList;
