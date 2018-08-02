@@ -58,6 +58,10 @@ namespace ExpenseReport
             foreach (string category in myCategoryWindow.Categories.CategoryList)
             {
                 categoryComboBox.Items.Add(category);
+                CheckBox box = new CheckBox();
+                box.Name = category;
+                box.Checked = false;
+                categoryGraphComboBox.Items.Add(box);
             }
         }
 

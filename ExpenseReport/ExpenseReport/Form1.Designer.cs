@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addExpensesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -59,6 +62,10 @@
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.expenseChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.categoryGraphComboBox = new System.Windows.Forms.ComboBox();
+            this.groupByGraphComboBox = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -69,6 +76,8 @@
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.expenseChart)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -97,33 +106,33 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(50, 29);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // saveProjectToolStripMenuItem
+            // addExpensesToolStripMenuItem
             // 
-            this.saveProjectToolStripMenuItem.Name = "saveProjectToolStripMenuItem";
-            this.saveProjectToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
-            this.saveProjectToolStripMenuItem.Text = "Save Project";
-            this.saveProjectToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            this.addExpensesToolStripMenuItem.Name = "addExpensesToolStripMenuItem";
+            this.addExpensesToolStripMenuItem.Size = new System.Drawing.Size(217, 30);
+            this.addExpensesToolStripMenuItem.Text = "Add Expenses";
+            this.addExpensesToolStripMenuItem.Click += new System.EventHandler(this.addExpensesToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(217, 30);
             this.openToolStripMenuItem.Text = "Open Project";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // saveProjectToolStripMenuItem
+            // 
+            this.saveProjectToolStripMenuItem.Name = "saveProjectToolStripMenuItem";
+            this.saveProjectToolStripMenuItem.Size = new System.Drawing.Size(217, 30);
+            this.saveProjectToolStripMenuItem.Text = "Save Project";
+            this.saveProjectToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(217, 30);
             this.saveAsToolStripMenuItem.Text = "Save Project As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
-            // 
-            // addExpensesToolStripMenuItem
-            // 
-            this.addExpensesToolStripMenuItem.Name = "addExpensesToolStripMenuItem";
-            this.addExpensesToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
-            this.addExpensesToolStripMenuItem.Text = "Add Expenses";
-            this.addExpensesToolStripMenuItem.Click += new System.EventHandler(this.addExpensesToolStripMenuItem_Click);
             // 
             // dataGridView1
             // 
@@ -143,6 +152,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(12, 36);
@@ -380,6 +390,57 @@
             // 
             this.openFileDialog2.Filter = "Expense Report files|*.xml";
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.groupByGraphComboBox);
+            this.tabPage4.Controls.Add(this.categoryGraphComboBox);
+            this.tabPage4.Controls.Add(this.expenseChart);
+            this.tabPage4.Location = new System.Drawing.Point(4, 29);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(1035, 750);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Graphs";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // expenseChart
+            // 
+            this.expenseChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            chartArea1.Name = "ChartArea1";
+            this.expenseChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.expenseChart.Legends.Add(legend1);
+            this.expenseChart.Location = new System.Drawing.Point(18, 180);
+            this.expenseChart.Name = "expenseChart";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.expenseChart.Series.Add(series1);
+            this.expenseChart.Size = new System.Drawing.Size(1017, 525);
+            this.expenseChart.TabIndex = 0;
+            this.expenseChart.Text = "chart1";
+            // 
+            // categoryGraphComboBox
+            // 
+            this.categoryGraphComboBox.FormattingEnabled = true;
+            this.categoryGraphComboBox.Location = new System.Drawing.Point(101, 53);
+            this.categoryGraphComboBox.Name = "categoryGraphComboBox";
+            this.categoryGraphComboBox.Size = new System.Drawing.Size(121, 28);
+            this.categoryGraphComboBox.TabIndex = 1;
+            // 
+            // groupByGraphComboBox
+            // 
+            this.groupByGraphComboBox.FormattingEnabled = true;
+            this.groupByGraphComboBox.Items.AddRange(new object[] {
+            "Daily",
+            "Weekly",
+            "Monthly"});
+            this.groupByGraphComboBox.Location = new System.Drawing.Point(381, 52);
+            this.groupByGraphComboBox.Name = "groupByGraphComboBox";
+            this.groupByGraphComboBox.Size = new System.Drawing.Size(121, 28);
+            this.groupByGraphComboBox.TabIndex = 2;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -407,6 +468,8 @@
             this.tabPage3.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.expenseChart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -445,6 +508,10 @@
         private System.Windows.Forms.ToolStripMenuItem saveProjectToolStripMenuItem;
         private System.Windows.Forms.Button prevUncatButton;
         private System.Windows.Forms.Button nextUncatButton;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.ComboBox groupByGraphComboBox;
+        private System.Windows.Forms.ComboBox categoryGraphComboBox;
+        private System.Windows.Forms.DataVisualization.Charting.Chart expenseChart;
     }
 }
 
